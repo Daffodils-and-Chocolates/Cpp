@@ -14,20 +14,51 @@ public:
     }
 };
 class BinaryTree{
-private:
-    node* root;
 public:
+    node* root;
     BinaryTree(){
         root= nullptr;
     }
-    void printInOrder(node* root){
+    void insert(int data){
+        if(root == nullptr) {
+            root = new node(data);
+            return;
+        }
+        
+    }
+    void InOrder(node* root){
         if(root == nullptr) return;
-        printInOrder(root->left);
+        InOrder(root->left);
         cout<< root->data<<" ";
-        printInOrder(root->right);
+        InOrder(root->right);
+    }
+    void PreOrder(node* root){
+        if(root == nullptr) return;
+        cout<< root->data<<" ";
+        PreOrder(root->left);
+        PreOrder(root->right);
+    }
+    void PostOrder(node* root){
+        if(root == nullptr) return;
+        PostOrder(root->left);
+        PostOrder(root->right);
+        cout<< root->data << " ";
     }
 };
 int main(){
-    node* root;
+    BinaryTree tree;
+    tree.root = new node(1);
+    tree.root->left = new node(2);
+    tree.root->right = new node(3);
+    tree.root->left->left = new node(4);
+    tree.root->left->right = new node(5);
+    tree.root->right->left = new node(6);
+    tree.root->right->right = new node(7);
+    cout<<"InOrder Traversal :"<<endl;
+    tree.InOrder(tree.root);
+    cout<<endl<<"PostOrder Traversal :"<<endl;
+    tree.PostOrder(tree.root);
+    cout<<endl<<"PreOrder Traversal :"<<endl;
+    tree.PreOrder(tree.root);
     return 0; 
 }

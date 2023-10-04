@@ -15,7 +15,7 @@ int main(){
     int c = a-b;
     //diagonals to '1'
     for(int i=0;i<n;i++){
-        for(int j=0;j<n;j++){   jbhjkn
+        for(int j=0;j<n;j++){
             if(i+j==a+b) arr[i][j] = '1';//left diagonal
             if(a==b&&i==j) arr[i][j] = '1';
 
