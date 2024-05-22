@@ -1,45 +1,96 @@
 #include <iostream>
-#include <string.h>
 using namespace std;
 
-int main(){
-    int n;
-    cout<< "Enter size of square array : \n";
-    cin>>n;
-    char arr[n][n];
-    memset( arr, '0', sizeof(arr) );
-    for(int i=0;i<n;i++){//display co-ordinates
-        for(int j=0;j<n;j++){
-            cout<<i<<","<<j<<"  ";
-        }
-        cout<<endl;
-    }
-    //starting n-queen
-    char temp[n][n];
-    for(int i=0;i<n;i++){
-        // reset(arr,temp);
+void display(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+}
 
-    }
-    for(int i=0;i<n;i++){//display array
-        for(int j=0;j<n;j++){
-            cout<< arr[i][j]<<" ";
+void selectionSort(int arr[], int n)
+{ // is not stable
+    for (int i = 0; i < n; i++)
+    {
+        int min = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[min] > arr[j])
+            {
+                swap(arr[min], arr[j]);
+            }
         }
-        cout<<endl;
-    }
-    return 0; 
-}
-template <size_t row>
-void reset(char(&arr)[row][row],char(&temp)[row][row]){
-    // copy(&arr[0][0], &arr[0][0] + n * n, &temp[0][0]);
-}
-template <size_t row>
-void queenIndex(char(&temp)[row][row],int r){
-    for(int i=0;i<row;i++){
-        if(temp[r][i]!='Q') temp[r][i]='1';//horizontal
-        if(temp[i][r]!='Q') temp[i][r]='1';//vertical
+        display(arr, n);
     }
 }
-// class queen{
-// public:
-     
-// };
+
+void bubbleSort(int arr[], int n)
+{ // is stable
+    for (int i = n - 1; i >= 0; i--)
+    {
+        int max = i;
+        for (int j = 0; j < i; j++)
+        {
+            max = (arr[max] < arr[j]) ? j : max;
+        }
+        if (max != i)
+        {
+            swap(arr[max], arr[i]);
+        }
+        display(arr, n);
+    }
+}
+
+void recursiveBubbleSort(int arr[], int n, int i = 0)
+{
+    if (i >= n)
+        return;
+    int max = n - i - 1;
+    for (int j = 0; j < n - i; j++)
+    {
+        if (arr[max] < arr[j])
+            max = j;
+    }
+    if (max != n - i - 1)
+        swap(arr[max], arr[n - i - 1]);
+    recursiveBubbleSort(arr, n, ++i);
+}
+
+void insertionSort(int arr[], int n)
+{
+    for (int i = 1; i < n; i++)
+    {
+        int newCard = arr[i];
+        int j = i - 1;
+        // cout<<"newCard : "<<newCard <<endl;
+        for (; j >= 0 && (arr[j] > newCard); j--)
+        {
+            arr[j + 1] = arr[j];
+            // cout << "inside loop : ";
+            // display(arr, n);
+        }
+        arr[j + 1] = newCard;
+        // cout<<"outside loop : ";
+        // display(arr, n);
+        // cout << endl;
+    }
+}
+
+void twoWayMerge(int arr[], int n){
+
+}
+
+int main()
+{
+    int n;
+    cout << "Enter size of array : \n";
+    cin >> n;
+    int arr[n];
+    cout << "Enter elements of array:" << endl;
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+    insertionSort(arr, n);
+    cout << "Sorted :";
+    display(arr, n);
+    return 0;
+}

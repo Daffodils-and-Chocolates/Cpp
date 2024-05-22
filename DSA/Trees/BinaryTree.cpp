@@ -19,12 +19,20 @@ public:
     BinaryTree(){
         root= nullptr;
     }
-    void insert(int data){
+    void insert(node* root,int data){
         if(root == nullptr) {
             root = new node(data);
             return;
         }
-        
+        if(root->left == nullptr){
+            root->left = new node(data);
+            return;
+        }
+        if(root->right == nullptr){
+            root->right = new node(data);
+            return;
+        }
+        insert(root->left ,data);
     }
     void InOrder(node* root){
         if(root == nullptr) return;

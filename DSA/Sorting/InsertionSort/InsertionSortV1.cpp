@@ -8,15 +8,21 @@ void display(int arr[],int n){
     }
 }
 void sorting(int arr[],int n){
-    for(int i=2;i<n;i++){
-        for(int j=i-1;j>=0;j--){
-            if(arr[j]<arr[i]){
-                for(int k=i;k>j+1;k--){
-                    swap(arr[k],arr[k-1]);
-                }
-                break;
-            }
+    for (int i = 1; i < n; i++)
+    {
+        int newCard = arr[i];
+        int j = i - 1;
+        // cout<<"newCard : "<<newCard <<endl;
+        for (; j >= 0 && (arr[j] > newCard); j--)
+        {
+            arr[j + 1] = arr[j];
+            // cout << "inside loop : ";
+            // display(arr, n);
         }
+        arr[j + 1] = newCard;
+        // cout<<"outside loop : ";
+        // display(arr, n);
+        // cout << endl;
     }
 }
 int main(){

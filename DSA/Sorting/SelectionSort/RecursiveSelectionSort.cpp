@@ -12,9 +12,9 @@ void RecursiveSelectionSort(int arr[], int n,int start){
     if(n==start) return;
     int min =start;
     for(int i=start+1;i<n;i++){
-        min = (arr[min]<arr[i])? min : i;
+        if (arr[min]>arr[i])
+            swap(arr[min],arr[i]);
     }
-    if(min!=start)swap(arr[min],arr[start]);
     RecursiveSelectionSort(arr,n,start+1);
 }
 int main(){

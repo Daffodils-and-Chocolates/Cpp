@@ -10,12 +10,13 @@ void QuickSort(int arr[],int s, int e){
     int n = e-s;
     if(n<=1) return;
     int l=s,h=e-1,p=0;
-    while(l!=h){
+    while(l<h){
         if(arr[l]>arr[h]){
             swap(arr[l],arr[h]);
             p = (p==l)? h : l;
             (p==h)? l++ : h--; 
         }
+        // display(arr,7);
     }
     QuickSort(arr,s,p);
     QuickSort(arr,p+1,e);
